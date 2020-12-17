@@ -1,9 +1,12 @@
 import {
     Entity, 
     Column, 
-    PrimaryGeneratedColumn 
+    PrimaryGeneratedColumn,
+    OneToMany
 
 } from 'typeorm';
+import { Product } from './../../product/entity/product.entity'
+
 
 @Entity()
 export class Client {
@@ -13,6 +16,9 @@ export class Client {
 
     @Column({ length: 35 })
     name: string;
+
+    @OneToMany(type => Product, category => Client)
+    produto: Product[];
 
     @Column({ length: 45 })
     email: string;
